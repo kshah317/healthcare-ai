@@ -2,7 +2,7 @@
 
 Applied ML/NLP projects at the intersection of clinical data and imaging informatics. This is intended as the flagship repo of the portfolio — the one place worth spending the most polish.
 
-**Suggested GitHub topics:** `healthcare-ai` `clinical-nlp` `medical-imaging` `machine-learning` `python`
+**Suggested GitHub topics:** `healthcare-ai` `clinical-nlp` `medical-imaging` `machine-learning` `rlhf` `python`
 
 ## Structure
 
@@ -10,16 +10,18 @@ Each subfolder under `projects/` is a self-contained project with its own README
 
 ```
 healthcare-ai/
-README.md              <- you are here (overview + links to each project)
+README.md                    <- you are here (overview + links to each project)
 projects/
-  imaging-informatics/   <- e.g. image preprocessing, classification, segmentation work
-  clinical-nlp/          <- e.g. clinical note structuring, entity extraction, de-identification
+  imaging-informatics/       <- e.g. image preprocessing, classification, segmentation work
+  clinical-nlp/               <- e.g. clinical note structuring, entity extraction, de-identification
+  rlhf-clinical-alignment/    <- flagship: RLHF-style alignment applied to clinically cautious language
 ```
 
 ## Projects
 
 | Project | Description | Stack |
 |---|---|---|
+| [rlhf-clinical-alignment](projects/rlhf-clinical-alignment) | Flagship — RLHF-style pipeline aligning a small model toward clinically cautious language | |
 | [imaging-informatics](projects/imaging-informatics) | *placeholder — describe once populated* | |
 | [clinical-nlp](projects/clinical-nlp) | *placeholder — describe once populated* | |
 
