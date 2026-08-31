@@ -1,48 +1,40 @@
 # Clinical Trial Eligibility Criteria Structurer
 
-A tool that reads the free text "eligibility criteria" block published with every clinical trial and turns it into structured data: who qualifies by age and sex, and a categorized, bullet by bullet breakdown of why.
+Every clinical trial posts a paragraph explaining who's allowed to join, called the "eligibility criteria." I built a tool that reads that paragraph and turns it into clean data: what age range qualifies, what sex is required, and a categorized list of every rule and why it's there.
 
-## The problem
+## Why I built this
 
-Every trial on ClinicalTrials.gov publishes its eligibility rules as a wall of unstructured text, written by a different research team, in a different format, every time. Some trials number their criteria, some bullet them, some write them as flowing prose with no punctuation cues at all. A researcher screening patients, a patient search tool, or anyone trying to compare eligibility across many trials at once has to read every single one by hand, because the text was never designed to be queried, filtered, or compared. Multiply that by the roughly half a million trials registered on the platform and it becomes a real bottleneck: valuable structure (who can enroll, why, and under what conditions) is trapped inside prose.
+Each trial's eligibility paragraph is written by a different research team, in a different style. Some number the rules, some bullet them, some just write full paragraphs with no formatting at all. If you're trying to figure out which trials someone qualifies for, or comparing eligibility across dozens of trials, you end up reading everything by hand. There are roughly half a million trials registered on ClinicalTrials.gov, so that reading adds up fast. I wanted to see how much of that I could automate with nothing but pattern matching.
 
-This is a small, honest version of a problem real health informatics teams work on: understanding unstructured clinical text at scale.
+## What it does
 
-## Why this is NLP
+Feed it a trial's eligibility text, and you get back:
 
-The core task is natural language understanding: taking human written text and recovering the structure and meaning underneath it, specifically who a document is describing (an age range, a sex requirement), which sentences are requirements versus disqualifiers, and what each one is actually about (a lab value, a pregnancy exclusion, prior treatment history). That is the same shape of problem as named entity recognition (pulling ages and sex out of a sentence), text segmentation (splitting inclusion from exclusion), and negation detection (a technique from real clinical NLP, generally known as NegEx, that flags phrases like "no history of X" as negative findings rather than positive ones). This project implements light versions of all three, by hand, so the logic stays fully visible.
+* a normalized age range in years (handles "18-65 years," "aged 18 to 75," and "65 years of age" the same way)
+* a sex requirement, figured out even when it's only implied, like "postmenopausal women"
+* every inclusion and exclusion rule, split out and labeled (pregnancy, lab results, prior treatment, etc.) so you can skim straight to what matters to you
 
-## What NLP tools are used, and why
+## How it works, in plain terms
 
-Everything here is built on Python's standard library: `re` for pattern matching, `dataclasses` for the structured output shapes, `urllib.request` for pulling live data, and `unittest` for testing. No spaCy, no NLTK, no scikit-learn, no trained model of any kind.
+This is basically three small text-understanding jobs stitched together: finding specific facts in a sentence (like an age or a sex requirement), splitting a document into its "who's allowed in" and "who's kept out" halves, and catching negative phrasing, like recognizing that "no history of seizures" is a rule about someone *not* having seizures, not a rule about having them. I wrote all three by hand using regular expressions (pattern-matching rules for text) instead of reaching for an off-the-shelf AI library, so every decision the tool makes is something I can point to and explain.
 
-That is a deliberate choice, not a shortcut. Clinical text is exactly the domain where a black box model is a liability: if a tool decides a trial excludes women, or requires patients to be over 65, a person needs to be able to see *why* it decided that. A rule based parser can be read top to bottom, and every extracted field traces back to an exact regular expression a person can inspect and fix. Machine learning approaches to this problem exist and can outperform hand written rules on messier text, but they trade that transparency for accuracy, and in a domain where a wrong eligibility read has real consequences, an auditable "wrong answer" is worth more than an opaque "usually right" one. The tradeoff is spelled out in `criteria_parser.py` directly: every extraction rule sits in one readable function, tuned against real trial text rather than a synthetic example.
+## Why no fancy AI model
 
-## How it eases the underlying problem
+I stuck to Python's built-in tools only, nothing installed. No spaCy, no NLTK, no machine learning model.
 
-Instead of reading a trial's eligibility text end to end, a user (or another piece of software) gets back:
+That was a deliberate choice. If a tool tells you a trial excludes women, or requires patients over 65, you should be able to see exactly why it decided that. Hand-written rules are fully readable, anyone can trace an answer back to the exact line of logic that produced it. A trained model might handle messy phrasing better, but you lose that transparency, and for something touching health decisions, I'd rather have a tool that's explainable than one that's just "usually right."
 
-* a normalized minimum and maximum age, in years, regardless of whether the original text said "18-65 years," "aged 18 to 65," "age >= 18 <= 65 years," or "65 years of age"
-* a normalized sex requirement (`FEMALE`, `MALE`, or `ALL`), resolved even when the text only implies it through words like "postmenopausal women" while correctly ignoring routine mentions like "pregnant women" in an exclusion list for an otherwise mixed sex trial
-* every inclusion and exclusion line split out individually and tagged with a category (pregnancy, prior therapy, lab values, psychiatric history, and so on), so a reader can jump straight to the kind of criterion they care about instead of reading the whole block
+## Grading myself without labeling anything by hand
 
-That is the same value any structuring pipeline provides: it does not answer clinical questions, it removes the manual reading step so a person (or a downstream tool) can act on the trial faster.
-
-## Data: where the evaluation comes from
-
-The data source is the free, public [ClinicalTrials.gov API v2](https://clinicaltrials.gov/data-api/api), no key or account required. `fetch_trials.py` calls it directly and normalizes each result into one flat shape.
-
-The interesting part is how this project evaluates itself without any manual labeling. Every trial record returned by the API already carries two versions of the same fact: the raw free text eligibility criteria (what this project parses), and separate, pre-structured `sex`, `minimumAge`, and `maximumAge` fields that ClinicalTrials.gov extracts itself when a trial is registered. That second set of fields is treated as ground truth, and the parser's output is checked against it automatically. `data/sample_trials.json` bundles 14 real trials, picked to cover the range of formatting styles actually seen in the wild (numbered lists, nested bullets, colon-less headers, unicode comparison symbols, escaped markdown characters), across six different conditions (diabetes, breast cancer, depression, asthma, hypertension, epilepsy), so the project runs and evaluates itself fully offline. Option 3 in the CLI fetches fresh trials live for any condition typed in.
+Here's the neat part: I didn't have to manually check any of this. Every trial on ClinicalTrials.gov already comes with two versions of the same information: the messy paragraph I'm parsing, and separate, clean fields (age, sex) that the registry fills in itself when a trial gets registered. I used that clean version as the answer key and checked my parser's output against it automatically. The bundled sample data covers 14 real trials across six conditions (diabetes, breast cancer, depression, asthma, hypertension, epilepsy), so the whole thing runs and grades itself with zero setup.
 
 ## Results
 
-Run against the bundled sample data, the parser currently gets:
+* Sex: 14/14 correct
+* Minimum age: 12/14 correct
+* Maximum age: 7/8 correct (only 8 of the 14 trials list an upper age limit at all)
 
-* sex: 14/14 correct (100%)
-* minimum age: 12/14 correct (86%)
-* maximum age: 7/8 correct (88%, only 8 of the 14 sample trials specify an upper bound at all)
-
-The misses are worth naming rather than hiding: in a couple of sample trials, ClinicalTrials.gov's own structured age field is simply not restated anywhere in the free text criteria, so no text based parser, rule based or otherwise, could recover it. That is a genuine limitation of working from free text alone, and `run_accuracy_check()` in `cli.py` reports it every time it runs, rather than only showing a flattering number.
+The two age misses aren't the parser being sloppy. In both cases, the registry's clean age field simply isn't repeated anywhere in the actual paragraph, so there's nothing in the text to find. The tool reports this honestly every time you run the accuracy check instead of hiding it.
 
 ## Structure
 
@@ -50,12 +42,12 @@ The misses are worth naming rather than hiding: in a couple of sample trials, Cl
 clinical-nlp/
 README.md
 models.py           <- CriterionItem and StructuredCriteria, the shared output shapes
-criteria_parser.py  <- the rule based parser: sections, bullets, age, sex, category, negation
-fetch_trials.py      <- live ClinicalTrials.gov API v2 client, stdlib only
+criteria_parser.py  <- the parser: sections, bullets, age, sex, category, negation
+fetch_trials.py     <- live ClinicalTrials.gov API client
 cli.py               <- menu driven demo
-tests.py             <- unittest suite, including the self evaluation check
+tests.py             <- test suite, including the self-check
 data/
-    sample_trials.json  <- 14 real, bundled trials for fully offline use
+    sample_trials.json  <- 14 real, bundled trials for offline use
 ```
 
 ## Run it
@@ -64,14 +56,12 @@ data/
 python cli.py
 ```
 
-From the menu: view a bundled sample trial structured, run the accuracy self check, fetch live trials for any condition (needs internet access), or paste in your own eligibility text.
-
-To run the tests:
+Pick a bundled trial to see it structured, run the accuracy check, fetch live trials for any condition (needs internet), or paste in your own eligibility text.
 
 ```bash
 python -m unittest tests.py -v
 ```
 
-## Known limitations
+## Limitations
 
-This is a portfolio scale demonstration, not a clinical decision tool: the regular expressions were tuned against 14 real trials across six conditions, not the full breadth of phrasing used across every trial ever registered, so accuracy will vary on text that looks very different from the samples. Age or sex information that only exists in a trial's structured metadata and is never restated in the free text criteria cannot be recovered by this or any other free text parser. The categorization lexicon is a fixed keyword list rather than a learned model, so an unusual phrasing can fall through to the generic "other" category. None of this output should be used to make real enrollment decisions.
+This is a personal project, not a medical tool. The rules were tuned on 14 real trials across six conditions, so unfamiliar phrasing will trip it up. If a detail only lives in the registry's clean metadata and is never actually written out in the paragraph, no text-reading tool can recover it. Categories come from a fixed list of keywords rather than a trained model, so an unusual sentence can land in the catch-all "other" bucket. None of this should be used to make actual enrollment decisions.
