@@ -14,19 +14,15 @@ Feed it a trial's eligibility text, and you get back:
 * a sex requirement, figured out even when it's only implied, like "postmenopausal women"
 * every inclusion and exclusion rule, split out and labeled (pregnancy, lab results, prior treatment, etc.) so you can skim straight to what matters to you
 
-## How it works, in plain terms
+## How it works
 
 This is basically three small text-understanding jobs stitched together: finding specific facts in a sentence (like an age or a sex requirement), splitting a document into its "who's allowed in" and "who's kept out" halves, and catching negative phrasing, like recognizing that "no history of seizures" is a rule about someone *not* having seizures, not a rule about having them. I wrote all three by hand using regular expressions (pattern-matching rules for text) instead of reaching for an off-the-shelf AI library, so every decision the tool makes is something I can point to and explain.
 
-## Why no fancy AI model
+I stuck to Python's built-in tools only, nothing installed. No spaCy, no NLTK, no machine learning model.That was a deliberate choice. If a tool tells you a trial excludes women, or requires patients over 65, you should be able to see exactly why it decided that. Hand-written rules are fully readable, anyone can trace an answer back to the exact line of logic that produced it. A trained model might handle messy phrasing better, but you lose that transparency, and for something touching health decisions, I'd rather have a tool that's explainable than one that's just "usually right."
 
-I stuck to Python's built-in tools only, nothing installed. No spaCy, no NLTK, no machine learning model.
+## Evaluation
 
-That was a deliberate choice. If a tool tells you a trial excludes women, or requires patients over 65, you should be able to see exactly why it decided that. Hand-written rules are fully readable, anyone can trace an answer back to the exact line of logic that produced it. A trained model might handle messy phrasing better, but you lose that transparency, and for something touching health decisions, I'd rather have a tool that's explainable than one that's just "usually right."
-
-## Grading myself without labeling anything by hand
-
-Here's the neat part: I didn't have to manually check any of this. Every trial on ClinicalTrials.gov already comes with two versions of the same information: the messy paragraph I'm parsing, and separate, clean fields (age, sex) that the registry fills in itself when a trial gets registered. I used that clean version as the answer key and checked my parser's output against it automatically. The bundled sample data covers 14 real trials across six conditions (diabetes, breast cancer, depression, asthma, hypertension, epilepsy), so the whole thing runs and grades itself with zero setup.
+I didn't have to manually check any of this. Every trial on ClinicalTrials.gov already comes with two versions of the same information: the messy paragraph I'm parsing, and separate, clean fields (age, sex) that the registry fills in itself when a trial gets registered. I used that clean version as the answer key and checked my parser's output against it automatically. The bundled sample data covers 14 real trials across six conditions (diabetes, breast cancer, depression, asthma, hypertension, epilepsy), so the whole thing runs and grades itself with zero setup.
 
 ## Results
 
