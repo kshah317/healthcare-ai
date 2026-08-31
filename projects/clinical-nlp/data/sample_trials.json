@@ -1,0 +1,128 @@
+[
+  {
+    "nct_id": "NCT05300022",
+    "title": "Technology Knowledge Optimization in Type 1 Diabetes (TeKnO T1D): Parents",
+    "conditions": ["Type 1 Diabetes"],
+    "known_sex": "ALL",
+    "known_minimum_age": "8 Years",
+    "known_maximum_age": null,
+    "eligibility_text": "Inclusion Criteria:\n\n1. child 8-12 years of age with a diagnosis of T1D >= 6 months\n2. currently using insulin pump( IP) and CGM >= 1 month [including Hybrid Closed Loop (HCL) systems]\n3. participation of primary diabetes caregiver\n4. English fluency\n5. mean A1c >7.5% over the past 6 months (Aim 3 only)\n\nExclusion Criteria:\n\n1. major illnesses other than T1D in the child\n2. significant cognitive limitations or major psychiatric disorders in the child or parent\n3. the use of medications other than insulin to control blood glucose levels."
+  },
+  {
+    "nct_id": "NCT01947595",
+    "title": "Individualized Lifestyle Intervention in Subjects With Prediabetes",
+    "conditions": ["Diabetes Mellitus Type 2"],
+    "known_sex": "ALL",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": "75 Years",
+    "eligibility_text": "Inclusion Criteria:\n\n* impaired fasting glucose (IFG)\n\n * fasting blood glucose 99-126 mg/dl\n\nand/or\n\n* impaired glucose tolerance (IGT)\n\n * 75 g OGTT 120 minutes: 139-200 mg/dl\n\nExclusion Criteria:\n\n* current pregnancy or breastfeeding\n* BMI > 45 kg/m2\n* Diabetes mellitus Typ 1 or 2\n* serious disease e.g symptomatic coronary heart disease\n* severe mental illness\n* drug abuse\n* treatment with steroids\n* potentially incompliant subjects"
+  },
+  {
+    "nct_id": "NCT03959501",
+    "title": "Metabolic Responses of Dapagliflozin vs Sitagliptin in T2DM Patients Inadequately Controlled With Insulin Therapy",
+    "conditions": ["Type 2 Diabetes", "Ketonemia"],
+    "known_sex": "ALL",
+    "known_minimum_age": "21 Years",
+    "known_maximum_age": "75 Years",
+    "eligibility_text": "Inclusion Criteria:\n\n* Chinese\n* Aged 21 to 75 both inclusive\n* Type 2 diabetes on single or two doses of insulin therapy with or without metformin\n* Suboptimal glycaemic control with baseline HbA1c >=8.0% and <=10.5%, taken within 2 months prior to randomization\n* Body mass index between 21 and 40 kg/m2\n\nExclusion Criteria:\n\n* Type 1 diabetes mellitus\n* History of ketoacidosis\n* Pregnant or nursing women\n* Severe mental disorder\n* Unable to understand written patient information and to give informed consent"
+  },
+  {
+    "nct_id": "NCT07093931",
+    "title": "Efficacy and Safety of Lobaplatin and Carboplatin as Neoadjuvant Therapy in HER-2 Positive Breast Cancer",
+    "conditions": ["Breast Cancer"],
+    "known_sex": "FEMALE",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": "70 Years",
+    "eligibility_text": "Inclusion Criteria:\n\n* Newly diagnosed breast cancer\n* 18-70 Years, female;\n* life expectancy is not less than 3 months\n* Histologically confirmed HER2 positive\n* at least one measurable lesion according to RECIST 1.1\n* Neutrophils >= 1.5x10^9/L\n* Platelets >= 100x10^9/L\n* Left ventricular ejection fraction (LVEF) >= 50%\n\nExclusion Criteria:\n\n* Stage IV (metastatic) breast cancer or bilateral breast cancer\n* Inflammatory breast cancer\n* patients who received chemotherapy, endocrine therapy, immunotherapy, biotherapy or TACE within 4 weeks before admission\n* Has a known history of Human Immunodeficiency Virus (HIV)\n* Female patients during pregnancy and lactation\n* History of neurological or psychiatric disorders, including epilepsy or dementia"
+  },
+  {
+    "nct_id": "NCT01754519",
+    "title": "Radiation Therapy in Treating Post-Menopausal Women With Early Stage Breast Cancer Undergoing Surgery",
+    "conditions": ["Stage I Breast Cancer", "Stage II Breast Cancer", "Ductal Breast Carcinoma In Situ"],
+    "known_sex": "FEMALE",
+    "known_minimum_age": "50 Years",
+    "known_maximum_age": null,
+    "eligibility_text": "Inclusion Criteria:\n\n* Core needle biopsy showing invasive mammary cancer or ductal carcinoma in situ\n* Age >= 50 years and postmenopausal with no menses for at least one year prior to study enrollment\n* Human epidermal growth factor receptor 2 (HER2)/neu negative on the core biopsy analysis\n* Unicentric tumor\n* Axillary lymph nodes negative by pre-operative physical examination\n* Negative surgical margins\n\nExclusion Criteria:\n\n* Initial core biopsy showing invasive lobular cancer\n* Any Her 2+ breast cancer\n* Cancer in a patient with a known inherited susceptibility mutation in breast cancer (BRCA)1 or BRCA2\n* Any prior breast cancer\n* Prior breast radiation therapy"
+  },
+  {
+    "nct_id": "NCT00003428",
+    "title": "Hormone Therapy in Treating Women With Breast Cancer",
+    "conditions": ["Breast Cancer"],
+    "known_sex": "FEMALE",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": null,
+    "eligibility_text": "DISEASE CHARACTERISTICS: Histologically proven locally advanced or metastatic breast cancer. Evaluable or bidimensionally measurable disease. No rapid disease progression requiring chemotherapy. Hormone receptor status: Estrogen receptor positive AND/OR Progesterone receptor positive.\n\nPATIENT CHARACTERISTICS: Age: 18 and over Sex: Female Performance status: ECOG 0-1 Life expectancy: At least 24 weeks Hematopoietic: Granulocyte count at least 1500/mm3 Platelet count at least 100,000/mm3 Other: Not pregnant or nursing\n\nPRIOR CONCURRENT THERAPY: No prior chemotherapy for metastatic breast cancer. No concurrent chemotherapy. No prior hormonal therapy for metastatic breast cancer (except tamoxifen)."
+  },
+  {
+    "nct_id": "NCT04570202",
+    "title": "Health cAre woRkers exposeD to COVID-19",
+    "conditions": ["Depression", "Burnout, Professional", "Post Traumatic Stress Disorder"],
+    "known_sex": "ALL",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": null,
+    "eligibility_text": "Inclusion Criteria in the cohort:\n\n* >= 18 years of age.\n* French speaking.\n* Health care workers: physicians, residents in medicine or pharmacy, nurses, auxiliary nurses.\n* Working in metropolitan French public or private hospitals.\n* Have taken care of patients with COVID-19.\n* Written informed consent obtained from the participant.\n\nExclusion Criteria in the cohort:\n\n* none"
+  },
+  {
+    "nct_id": "NCT06809907",
+    "title": "Kintsugi Voice Device Pivotal Study",
+    "conditions": ["Depression", "Depression Moderate", "Depression Severe", "Depression Mild"],
+    "known_sex": "ALL",
+    "known_minimum_age": "22 Years",
+    "known_maximum_age": null,
+    "eligibility_text": "Inclusion Criteria:\n\nAge >22 at the time of informed consent. Self-reported disruption to activities of daily living. Access to a laptop, smartphone, tablet, or other device with a functioning microphone and access to the Internet. Stated willingness to be video and audio recorded as part of the study. Resides in the United States at the time of consent and during completion of study.\n\n-\n\nExclusion Criteria:\n\n* Participants with at least one of the following conditions will be excluded:\n\nAny impairment that impacts their ability to speak and/or use a computer. Any lifetime history of neurological disease. Any lifetime history of Stroke, cognitive defect, and/or Traumatic Brain Injury. Past or active heavy smokers (an average of >20 cigarettes per day)."
+  },
+  {
+    "nct_id": "NCT02953431",
+    "title": "Increased Lung Volume as Controller Therapy for Asthma",
+    "conditions": ["Asthma"],
+    "known_sex": "ALL",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": "65 Years",
+    "eligibility_text": "Inclusion Criteria for people with asthma:\n\n1. Physician diagnosis of asthma\n2. PC20 to methacholine < 16 mg/ml\n3. IgE < 100 IU/ml\n4. Ages 18-65 years\n5. BMI >=30 kg/m2\n\nExclusion Criteria:\n\n1. FEV1 < 60 % predicted\n2. Other significant disease that in the opinion of the investigator would interfere with study.\n3. Inability to perform required testing.\n4. Smoking within last 6 months.\n5. >= 20 pack year smoking history\n6. Pregnancy"
+  },
+  {
+    "nct_id": "NCT03135899",
+    "title": "BI 443651 Methacholine Challenge",
+    "conditions": ["Asthma"],
+    "known_sex": "ALL",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": "60 Years",
+    "eligibility_text": "Inclusion criteria:\n\n* Male or female subjects must have a diagnosis of asthma by a physician at least 3 months prior to screening.\n* Age >= 18 <= 60 years. Subjects must be within the eligible age range on the day of signing informed consent.\n* Diagnosis of asthma must have been made before the subject's age of 40.\n* ACQ value < 1.5 at the screening visit.\n* Body mass index (BMI) >= 18.5 and <= 32.0 kg/m2 at the screening visit\n\nExclusion criteria:\n\n* Significant pulmonary diseases other than asthma\n* Respiratory tract infection or asthma exacerbation in the 4 weeks prior to the screening visit.\n* Hospitalisation for asthma exacerbation within 3 months or intubation for asthma within 3 years of the screening visit.\n* Current smokers or ex-smokers who have given up smoking for < 12 months"
+  },
+  {
+    "nct_id": "NCT06988501",
+    "title": "Goal Setting and Mobile-based Self-management Tool to Improve Diet Quality of People With High Blood Pressure",
+    "conditions": ["Blood Pressure, High"],
+    "known_sex": "ALL",
+    "known_minimum_age": "20 Years",
+    "known_maximum_age": "70 Years",
+    "eligibility_text": "Inclusion Criteria:\n\n* Age 20-70;\n* Hypertension diagnosis, or high blood pressure (SBP between 120-139 mmHg and/or DBP between 80-89 mmHg);\n* Eating an unhealthy diet (estimated DASH score < 6) ;\n* Owning a smartphone and able to operate it proficiently;\n* Sign the informed consent.\n\nExclusion Criteria:\n\n* Severe cardiovascular and respiratory diseases, such as acute myocardial infarction, tachyarrhythmia, pulmonary edema, and severe aortic stenosis;\n* Uncontrolled blood pressure;\n* Diagnosed mental diseases or epilepsy;\n* Pregnant women or planning to become pregnant;"
+  },
+  {
+    "nct_id": "NCT01150357",
+    "title": "Safety and Efficacy of Aliskiren in Pediatric Hypertensive Patients 6-17 Years of Age",
+    "conditions": ["Hypertension"],
+    "known_sex": "ALL",
+    "known_minimum_age": "6 Years",
+    "known_maximum_age": "17 Years",
+    "eligibility_text": "Inclusion Criteria:\n\n* Documented diagnosis of hypertension as defined in the NHLBI 4th Report, 2004\n* msSBP (mean of 3 measurements) must be >= 95th percentile for age, gender and height, at Visit 2 (randomization) measurement\n\nExclusion Criteria:\n\n* Patient receiving immunosuppressant medication other than oral/topical steroids, for any medical condition\n* Current diagnosis of heart failure (NYHA Class II-IV) or history of cardiomyopathy or obstructive valvular disease\n* Second or third degree heart block without a pacemaker\n* Creatinine clearance < 30 mL/min/1.73m2"
+  },
+  {
+    "nct_id": "NCT05274035",
+    "title": "A Multi-center RWS of Perampanel as an add-on Treatment for Epileptic Seizures in Chinese Children",
+    "conditions": ["Epilepsy"],
+    "known_sex": "ALL",
+    "known_minimum_age": "2 Years",
+    "known_maximum_age": "12 Years",
+    "eligibility_text": "Inclusion Criteria:\n\n* Age >=2y, <=12y;\n* Within 3 months before taking perampanel, the frequency of epileptic seizures was >=1 time/month on average;\n* 1-3 kinds of AEDs have been used, and the optimal dose and course of treatment have been reached, but the effect is not good.\n\nExclusion Criteria:\n\n* Patients who have participated in other researches on antiepileptic drugs or medical devices;\n* Inaccurate or unreliable clinical records according to the judgment of participating doctors;\n* When the database is closed, the expected follow-up time is less than 6 months."
+  },
+  {
+    "nct_id": "NCT03808935",
+    "title": "Cannabis Extract in Refractory Epilepsy Study",
+    "conditions": ["Drug Resistant Epilepsy"],
+    "known_sex": "ALL",
+    "known_minimum_age": "18 Years",
+    "known_maximum_age": null,
+    "eligibility_text": "Inclusion Criteria:\n\n* Diagnosis of epilepsy according to the ILAE classification.\n* At least 4 motor seizures per month at the start of the study, despite treatment with at least two different anti-epileptic drugs for at least one year.\n* Stable dose(s) of the same AED(s) for one month prior to screening.\n* Is planning to stay in Canada for the duration of the trial.\n\nExclusion Criteria:\n\n* Participation in a study involving administration of an investigational compound within one month of Visit 1.\n* Progressive central nervous system (CNS) disease, including degenerative CNS diseases and progressive tumors.\n* Occurrence of psychogenic seizures in the previous year.\n* Pregnancy, breastfeeding.\n* Patients with a history of major depression, suicidal ideation or attempted suicide, schizophrenia or any other psychotic disorder"
+  }
+]
