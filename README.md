@@ -1,12 +1,12 @@
 # Healthcare AI
 
-Applied ML/NLP projects at the intersection of clinical data and imaging informatics. This is intended as the flagship repo of the portfolio — the one place worth spending the most polish.
+Applied ML/NLP projects at the intersection of clinical data and imaging informatics. 
 
 **Suggested GitHub topics:** `healthcare-ai` `clinical-nlp` `medical-imaging` `machine-learning` `rlhf` `python`
 
 ## Structure
 
-Each subfolder under `projects/` is a self-contained project with its own README, so a visitor can go straight to what interests them.
+Each subfolder under `projects/` is a self-contained project with its own README.
 
 ```
 healthcare-ai/
