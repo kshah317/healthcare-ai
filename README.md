@@ -27,4 +27,4 @@ projects/
 
 ## Notes on data
 
-Any clinical or imaging data used should be public/de-identified benchmark datasets (e.g. MIMIC-III/IV with proper credentialing, NIH ChestX-ray14, i2b2/n2c2 shared task corpora). Never commit real patient data, even anonymized-looking samples, without confirming the dataset's redistribution license explicitly permits it.
+Any clinical or imaging data used is public/de-identified benchmark datasets (e.g. MIMIC-III/IV with proper credentialing, NIH ChestX-ray14, i2b2/n2c2 shared task corpora). No real patient data, even anonymized-looking samples, committed without confirming the dataset's redistribution license explicitly permits it.
