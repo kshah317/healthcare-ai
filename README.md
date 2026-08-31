@@ -23,7 +23,7 @@ projects/
 |---|---|---|
 | [rlhf-clinical-alignment](projects/rlhf-clinical-alignment) | Flagship — RLHF-style pipeline aligning a small model toward clinically cautious language | |
 | [imaging-informatics](projects/imaging-informatics) | *placeholder — describe once populated* | |
-| [clinical-nlp](projects/clinical-nlp) | *placeholder — describe once populated* | |
+| [clinical-nlp](projects/clinical-nlp) | Rule-based parser that structures free-text clinical trial eligibility criteria into normalized age, sex, and categorized inclusion/exclusion bullets, self-validated against ClinicalTrials.gov's own structured fields | Python (stdlib only) |
 
 ## Notes on data
 
