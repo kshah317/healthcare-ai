@@ -1,0 +1,4 @@
+# pandas and numpy are the bread and butter of poking at any tabular dataset,
+# which is what the synthea-generated patient data will look like once that's wired in
+pandas
+numpy
