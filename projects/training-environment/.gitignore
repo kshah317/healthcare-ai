@@ -1,0 +1,6 @@
+# fake patient output from generate_patients.py, regenerated on demand so it never
+# needs to live in the repo
+generated-patients/
+
+# the synthea jar is about 200 mb and gets downloaded automatically, so keep it out too
+synthea-with-dependencies.jar
