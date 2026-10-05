@@ -12,7 +12,7 @@ This isn't an AI model. It's two things working together:
 
 1. **A ready-made workspace**, using something called a "dev container." Instead of writing out a long list of instructions like "install this version of Python, then this version of Java, then these ten libraries," all of that gets bundled into a container that VS Code can just open and run. Anyone (including future me, six months from now) can clone this repo, click one button, and land in an identical, fully equipped workspace. No guessing, no "wait, what version did I use again?"
 
-2. **A plan for fake patients**, coming in the next update. There's an open source tool called Synthea that invents realistic but completely made-up patients: fake names, fake diagnoses, fake prescriptions, the whole deal. None of it is real, so there's zero privacy risk, but it's realistic enough to actually practice on. That's the next piece getting wired into this environment.
+2. **A source of fake patients.** There's an open source tool called Synthea that invents realistic but completely made-up patients: fake names, fake diagnoses, fake prescriptions, the whole deal. None of it is real, so there's zero privacy risk, but it's realistic enough to actually practice on. There's now a script that wires it into this environment (more on that below).
 
 ## Why bother making this its own project
 
@@ -23,9 +23,21 @@ Setting up a safe, repeatable environment for healthcare data work is a real pai
 This is getting built slowly, in small pieces, instead of all at once. Here's the plan:
 
 - [x] a dev container with Python and Java pre-installed (Java because Synthea needs it to run)
-- [ ] a script that downloads and runs Synthea to generate a batch of fake patients
+- [x] a script that downloads and runs Synthea to generate a batch of fake patients
 - [ ] automated checks that stop real data or secrets from accidentally getting committed
 - [ ] a walkthrough showing the whole thing working end to end
+
+## Making fake patients
+
+The `generate_patients.py` script is the piece that actually fills this workspace with data. You tell it how many patients you want, and it handles the rest:
+
+- If Synthea isn't on your machine yet, it downloads it for you. It's one big file (about 200 MB), so the first run takes a bit.
+- It runs Synthea, which spits out a batch of made-up people along with their whole medical history: doctor visits, diagnoses, medications, allergies, that kind of thing.
+- It sorts the results into a `generated-patients/` folder. Inside, `csv/` has spreadsheet-style tables you can open in Excel or Python, and `fhir/` has the same info in FHIR, which is just the standard file format hospitals use to swap patient records with each other.
+
+Why does this matter? Because now I've got a pile of patient records that look and feel like the real thing, and I can poke at them, break them, and build on them without ever worrying about anyone's privacy. Nobody in there actually exists.
+
+The output folder is listed in `.gitignore` (a file that tells git which stuff to never save), so a batch of fake patients can't accidentally end up committed to the repo. Want fresh ones? Just run the script again. There's also a small test file, `test_generate_patients.py`, that checks the sorting logic works without needing Java or the big download.
 
 ## How to use this (once it's open)
 
@@ -33,5 +45,6 @@ This is getting built slowly, in small pieces, instead of all at once. Here's th
 2. Open this folder in VS Code.
 3. When it asks "Reopen in Container?", say yes.
 4. Wait a minute while it builds, then the workspace is ready to go.
+5. To make some fake patients, open the terminal and run `python generate_patients.py --count 20` (or however many you want).
 
 That's it for now. More coming soon.
