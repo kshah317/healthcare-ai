@@ -2,3 +2,6 @@
 # which is what the synthea-generated patient data will look like once that's wired in
 pandas
 numpy
+
+# runs the real-data check before every commit, see check_no_real_data.py
+pre-commit
