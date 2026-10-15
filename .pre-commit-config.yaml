@@ -1,0 +1,12 @@
+# runs the real-data and secrets check right before every commit on my own machine.
+# one-time setup: pip install pre-commit, then pre-commit install
+repos:
+  - repo: local
+    hooks:
+      - id: no-real-data
+        name: check for real patient data and secrets
+        # uses whatever python is already on the machine, no extra environment needed
+        entry: python projects/training-environment/check_no_real_data.py
+        language: system
+        # only look at files inside the training environment project
+        files: ^projects/training-environment/
