@@ -24,7 +24,7 @@ This is getting built slowly, in small pieces, instead of all at once. Here's th
 
 - [x] a dev container with Python and Java pre-installed (Java because Synthea needs it to run)
 - [x] a script that downloads and runs Synthea to generate a batch of fake patients
-- [ ] automated checks that stop real data or secrets from accidentally getting committed
+- [x] automated checks that stop real data or secrets from accidentally getting committed
 - [ ] a walkthrough showing the whole thing working end to end
 
 ## Making fake patients
@@ -38,6 +38,18 @@ The `generate_patients.py` script is the piece that actually fills this workspac
 Why does this matter? Because now I've got a pile of patient records that look and feel like the real thing, and I can poke at them, break them, and build on them without ever worrying about anyone's privacy. Nobody in there actually exists.
 
 The output folder is listed in `.gitignore` (a file that tells git which stuff to never save), so a batch of fake patients can't accidentally end up committed to the repo. Want fresh ones? Just run the script again. There's also a small test file, `test_generate_patients.py`, that checks the sorting logic works without needing Java or the big download.
+
+## Keeping real data (and secrets) out of the repo
+
+The whole point of using fake patients is that nobody's real info ever touches this project. But I'm only human, and one sloppy copy-paste could undo that. So there's a small safety net, `check_no_real_data.py`, that reads files and yells if something looks off:
+
+- things shaped like a Social Security number or a medical record number
+- passwords, API keys, or tokens typed straight into a file (obvious placeholders like "your-password-here" are fine)
+- files that should never be saved at all, like `.env` files, key files, the Synthea jar, or anything inside the generated patients folder
+
+It runs in two places. On my own machine, a tool called pre-commit runs it right before every commit, so a bad commit gets stopped before it even exists (one-time setup: `pip install pre-commit`, then `pre-commit install`). And on GitHub, a check runs on every pull request and every push to main, which covers the times I edit in the browser and my laptop never gets a vote. The tests for the checker live in `test_check_no_real_data.py`.
+
+One honest note: this is pattern matching, not magic. It catches the common mistakes, but a really weird one could still slip past.
 
 ## How to use this (once it's open)
 

@@ -1,0 +1,41 @@
+# runs the real-data and secrets check, plus the tests, whenever the training environment
+# project changes. this is the part that still works when i edit in the github web editor
+# and my laptop's pre-commit hook never gets a chance to run.
+name: guardrails
+
+on:
+  pull_request:
+    paths:
+      - "projects/training-environment/**"
+      - ".github/workflows/guardrails.yml"
+  push:
+    branches: [main]
+    paths:
+      - "projects/training-environment/**"
+      - ".github/workflows/guardrails.yml"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # every step below runs from inside the project folder
+        working-directory: projects/training-environment
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # pandas and numpy, in case the other tests in this folder import them
+      - name: install requirements
+        run: pip install -r requirements.txt
+
+      # fails the run if anything looks like real patient data or a secret
+      - name: scan for real data and secrets
+        run: python check_no_real_data.py
+
+      # fails the run if any of the tests break
+      - name: run the tests
+        run: python -m unittest -v
