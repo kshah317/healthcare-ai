@@ -1,14 +1,12 @@
 # Training Environment for Healthcare AI
 
-Hey, so here's what this folder is about, in plain English before we get into the weeds.
-
-I want to eventually build cool stuff with healthcare data and AI. But here's the catch: real patient records are (rightfully) locked down tight. Hospitals can't just hand out real medical charts for people to experiment with, and even if they could, every laptop I set this project up on would probably end up configured slightly differently, which means "it works on my machine" chaos down the road.
+I want to eventually build cool stuff with healthcare data and AI. But  real patient records are (rightfully) locked down tight. Hospitals can't just hand out real medical charts for people to experiment with, and even if they could, every laptop I set this project up on would probably end up configured slightly differently, which means "it works on my machine" chaos down the road.
 
 So before touching any actual healthcare AI problem, I'm building the workspace itself first. Think of it like setting up a kitchen before you start cooking: you want the same pots, pans, and ingredients ready to go every time, no matter whose kitchen you're standing in.
 
 ## What's actually in this project
 
-This isn't an AI model. It's two things working together:
+It's two things working together:
 
 1. **A ready-made workspace**, using something called a "dev container." Instead of writing out a long list of instructions like "install this version of Python, then this version of Java, then these ten libraries," all of that gets bundled into a container that VS Code can just open and run. Anyone (including future me, six months from now) can clone this repo, click one button, and land in an identical, fully equipped workspace. No guessing, no "wait, what version did I use again?"
 
