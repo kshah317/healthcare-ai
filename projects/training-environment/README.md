@@ -25,7 +25,7 @@ This is getting built slowly, in small pieces, instead of all at once. Here's th
 - [x] a dev container with Python and Java pre-installed (Java because Synthea needs it to run)
 - [x] a script that downloads and runs Synthea to generate a batch of fake patients
 - [x] automated checks that stop real data or secrets from accidentally getting committed
-- [ ] a walkthrough showing the whole thing working end to end
+- [x] a walkthrough showing the whole thing working end to end
 
 ## Making fake patients
 
@@ -51,12 +51,14 @@ It runs in two places. On my own machine, a tool called pre-commit runs it right
 
 One honest note: this is pattern matching, not magic. It catches the common mistakes, but a really weird one could still slip past.
 
-## How to use this (once it's open)
+## Walkthrough: from nothing to fake patients you can poke at
 
-1. Install the "Dev Containers" extension in VS Code.
-2. Open this folder in VS Code.
-3. When it asks "Reopen in Container?", say yes.
-4. Wait a minute while it builds, then the workspace is ready to go.
-5. To make some fake patients, open the terminal and run `python generate_patients.py --count 20` (or however many you want).
+Here's the whole thing start to finish. It takes about ten minutes, most of it waiting on downloads.
 
-That's it for now. More coming soon.
+1. **Open the workspace.** Install the "Dev Containers" extension in VS Code, open this folder, and say yes when it asks "Reopen in Container?". The first build takes a minute or two.
+2. **Make some fake patients.** In the terminal, run `python generate_patients.py --count 20` (or however many you want). The first run downloads Synthea, which is about 200 MB, so go grab a coffee. You'll end up with a `generated-patients/` folder.
+3. **Take a look at them.** Run `python explore_patients.py`. It reads the tables Synthea wrote and prints a quick summary: how many people there are, their ages, the most common diagnoses and medications, and how many doctor visits each person had. It's a starting point, nothing fancy.
+4. **Check nothing risky snuck in.** Run `python check_no_real_data.py`. If all is well it tells you how many files it checked and that nothing looked suspicious. If you set up pre-commit, this happens on its own before every commit.
+5. **Run the tests.** `python -m unittest -v` runs every test in this folder. None of them need Java or the big download.
+
+From here the folder is a safe place to try ideas on patient-style data. Break things freely, then run step 2 again whenever you want a fresh batch.
