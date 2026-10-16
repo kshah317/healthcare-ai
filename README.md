@@ -23,8 +23,8 @@ projects/
 
 | Project | Description | Stack |
 |---|---|---|
-| [rlhf-clinical-alignment](projects/rlhf-clinical-alignment) | Flagship — RLHF-style pipeline aligning a small model toward clinically cautious language | |
-| [imaging-informatics](projects/imaging-informatics) | *placeholder — describe once populated* | |
+| [rlhf-clinical-alignment](projects/rlhf-clinical-alignment) | Flagship: RLHF-style pipeline aligning a small model toward clinically cautious language | |
+| [imaging-informatics](projects/imaging-informatics) | *placeholder, describe once populated* | |
 | [clinical-nlp](projects/clinical-nlp) | Rule-based parser that structures free-text clinical trial eligibility criteria into normalized age, sex, and categorized inclusion/exclusion bullets, self-validated against ClinicalTrials.gov's own structured fields | Python (stdlib only) |
 | [readmission-predictor](projects/readmission-predictor) | Predicts whether a diabetic patient will be readmitted within 30 days of discharge, using logistic regression and gradient boosting, with a post-hoc fairness audit by race and gender | Python, scikit-learn, pandas |
 | [training-environment](projects/training-environment) | A ready-made dev container plus scripts that generate fake patients with Synthea, take a first look at them, and keep real data and secrets out of the repo | Python, Java (Synthea), pandas, GitHub Actions |
