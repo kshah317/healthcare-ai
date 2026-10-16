@@ -47,8 +47,6 @@ The whole point of using fake patients is that nobody's real info ever touches t
 
 It runs in two places. On my own machine, a tool called pre-commit runs it right before every commit, so a bad commit gets stopped before it even exists (one-time setup: `pip install pre-commit`, then `pre-commit install`). And on GitHub, a check runs on every pull request and every push to main, which covers the times I edit in the browser and my laptop never gets a vote. The tests for the checker live in `test_check_no_real_data.py`.
 
-One honest note: this is pattern matching, not magic. It catches the common mistakes, but a really weird one could still slip past.
-
 ## Walkthrough: from nothing to fake patients you can poke at
 
 Here's the whole thing start to finish. It takes about ten minutes, most of it waiting on downloads.
@@ -58,5 +56,3 @@ Here's the whole thing start to finish. It takes about ten minutes, most of it w
 3. **Take a look at them.** Run `python explore_patients.py`. It reads the tables Synthea wrote and prints a quick summary: how many people there are, their ages, the most common diagnoses and medications, and how many doctor visits each person had. It's a starting point, nothing fancy.
 4. **Check nothing risky snuck in.** Run `python check_no_real_data.py`. If all is well it tells you how many files it checked and that nothing looked suspicious. If you set up pre-commit, this happens on its own before every commit.
 5. **Run the tests.** `python -m unittest -v` runs every test in this folder. None of them need Java or the big download.
-
-From here the folder is a safe place to try ideas on patient-style data. Break things freely, then run step 2 again whenever you want a fresh batch.
