@@ -84,7 +84,15 @@ def _doses_in_note(note, drug):
 
 def _find_conditions(text):
     # returns (standard name, start) for every condition mentioned
-    return [(_SPELLINGS[m.group(1)], m.start()) for m in CONDITION_RE.finditer(text)]
+    found = []
+    for m in CONDITION_RE.finditer(text):
+        name = _SPELLINGS[m.group(1)]
+
+        # "chronic obstructive pulmonary disease (copd)" is one mention, not two
+        if found and found[-1][0] == name and text[max(0, m.start() - 1): m.start()] == "(":
+            continue
+        found.append((name, m.start()))
+    return found
 
 
 def _prefix(text, start):
@@ -178,12 +186,21 @@ def check_summary(note, summary):
         for item in re.split(r",| and ", m.group(1)):
             item = item.strip()
 
+            # "an allergic reaction to latex" is about latex
+            item = re.sub(r"^(?:an?\s+)?(?:allergic\s+)?(?:reactions?|sensitivity)\s+to\s+", "", item)
+
             # skip empty bits and long runs of words that are not an allergen
             if not item or len(item.split()) > 3:
                 continue
             ok = re.search(r"allerg[^.]{0,120}" + re.escape(item), note_l) is not None
             reason = "the note lists this allergy" if ok else "the note does not list this allergy"
             claims.append(Claim("allergy", item, ok, reason))
+
+    # a summary that says there are no allergies is wrong if the note lists one
+    if re.search(r"\b(?:no|without|denies(?:\s+any)?)\s+(?:known\s+)?(?:drug\s+)?allergies", text):
+        has_allergy = re.search(r"allergic to|allergy to", note_l) is not None
+        why = "the note lists an allergy" if has_allergy else "the note has no allergies"
+        claims.append(Claim("allergy", "no allergies", not has_allergy, why))
 
     # 4. numbers: age, named lab values, blood pressure, and loose numbers with units
     note_numbers = set(re.findall(rf"{NUMBER}(?:/\d+)?", note_l))
