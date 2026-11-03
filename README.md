@@ -17,6 +17,7 @@ projects/
   rlhf-clinical-alignment/    <- flagship: RLHF-style alignment applied to clinically cautious language
   readmission-predictor/     <- predicts 30-day hospital readmission risk, with a race/gender fairness audit
   training-environment/      <- a reproducible workspace with fake patients, so there is safe data to practice on
+  clinical-summary-checker/  <- has a small AI model summarize fake notes, then checks the summaries for made-up claims
 ```
 
 ## Projects
@@ -28,6 +29,7 @@ projects/
 | [clinical-nlp](projects/clinical-nlp) | Rule-based parser that structures free-text clinical trial eligibility criteria into normalized age, sex, and categorized inclusion/exclusion bullets, self-validated against ClinicalTrials.gov's own structured fields | Python (stdlib only) |
 | [readmission-predictor](projects/readmission-predictor) | Predicts whether a diabetic patient will be readmitted within 30 days of discharge, using logistic regression and gradient boosting, with a post-hoc fairness audit by race and gender | Python, scikit-learn, pandas |
 | [training-environment](projects/training-environment) | A ready-made dev container plus scripts that generate fake patients with Synthea, take a first look at them, and keep real data and secrets out of the repo | Python, Java (Synthea), pandas, GitHub Actions |
+| [clinical-summary-checker](projects/clinical-summary-checker) | Has a small open model (Qwen2.5-0.5B) summarize fake clinical notes, then checks each summary for claims the note never made. Tested on planted mistakes and on the model's real output | Python, Hugging Face Transformers |
 
 ## Notes on data
 
