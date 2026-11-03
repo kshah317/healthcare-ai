@@ -63,6 +63,28 @@ class CheckerTests(unittest.TestCase):
         self.assertEqual(flagged[0].kind, "number")
 
 
+class RealOutputTests(unittest.TestCase):
+    # cases that came from the first real qwen run
+    def test_allergic_reaction_to_reads_as_the_allergen(self):
+        n = NOTES[3]
+        flagged = unsupported(check_summary(n["text"], "She has an allergic reaction to latex."))
+        self.assertEqual(flagged, [])
+
+    def test_abbreviation_in_brackets_keeps_the_negation(self):
+        n = NOTES[16]
+        summary = "He does not have a history of chronic obstructive pulmonary disease (COPD)."
+        self.assertEqual(unsupported(check_summary(n["text"], summary)), [])
+
+    def test_no_allergies_is_flagged_when_the_note_lists_one(self):
+        n = NOTES[19]
+        flagged = unsupported(check_summary(n["text"], "She has no known allergies to sulfa drugs."))
+        self.assertEqual([c.text for c in flagged], ["no allergies"])
+
+    def test_no_allergies_is_fine_when_the_note_agrees(self):
+        n = NOTES[1]
+        self.assertEqual(unsupported(check_summary(n["text"], "She has no known drug allergies.")), [])
+
+
 class PlantedTests(unittest.TestCase):
     def test_easy_planted_errors_are_caught(self):
         for n in NOTES:
